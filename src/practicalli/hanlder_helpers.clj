@@ -3,17 +3,14 @@
    [practicalli.data.access
     :refer [create-record update-record read-record delete-record
             create-tables delete-tables]]
-
    [practicalli.data.connection :as connection]))
 
-
+;; ---------------------------------------------------------
 ;; Business Logic - helpers for request handlers
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Database schemas
 (defn create-database [] (create-tables connection/db-spec-dev))
 (defn delete-database [] (delete-tables connection/db-spec-dev))
-
 
 ;; Create
 
@@ -29,7 +26,6 @@
   [transaction-details]
   (create-record connection/db-spec-dev :public.transaction transaction-details))
 
-
 ;; Update
 
 (defn update-customer
@@ -43,7 +39,6 @@
 (defn update-transaction
   [updated-values transaction-id]
   (update-record connection/db-spec-dev :public.transaction updated-values transaction-id))
-
 
 ;; Read
 
@@ -60,8 +55,6 @@
   [transaction-id]
   (read-record connection/db-spec-dev ["select * from public.transaction where id = ?" transaction-id]))
 
-
-
 ;; Delete
 
 (defn delete-customer
@@ -76,15 +69,16 @@
   [transaction-id]
   (delete-record connection/db-spec-dev :public.transaction transaction-id))
 
+;; ---------------------------------------------------------
 
-
+;; ---------------------------------------------------------
 ;; Rich comment block with redefined vars ignored
 #_{:clj-kondo/ignore [:redefined-var]}
 (comment
 
   ;; Create or delete the database tables from practicalli.data.schema
   (create-database)
-  (delete-database)
+  (delete-database))
 
-
-  ) ;; End of rich comment block
+;; End of rich comment block
+;; ---------------------------------------------------------

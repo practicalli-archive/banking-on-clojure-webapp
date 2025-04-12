@@ -12,6 +12,8 @@
    ;; System under test
    [practicalli.request-handler :as SUT]))
 
+;; ---------------------------------------------------------
+;; Unit tests
 
 (deftest welcome-page-test
   (testing "Testing elements on the welcome page"
@@ -36,11 +38,13 @@
 (deftest money-payment-test
   (testing "Testing elements on the money payment page"
     (is (= 200
-           (:status (SUT/money-payment(mock/request :get "/money-payment")))))))
-
+           (:status (SUT/money-payment (mock/request :get "/money-payment")))))))
 
 (deftest register-account-holder-test
   (testing "Testing elements on the register account holder page"
     (is (= 200
            (:status (SUT/account-history (mock/request :get "/register-account-holder")))))
-    #_(is (valid? ))))
+    #_(is (valid?))))
+
+;; End of Unit tests
+;; ---------------------------------------------------------

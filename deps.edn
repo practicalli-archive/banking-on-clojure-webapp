@@ -2,7 +2,7 @@
  ["src" "resources"]
 
  :deps
- {org.clojure/clojure {:mvn/version "1.10.1"}
+ {org.clojure/clojure {:mvn/version "1.12.0"}
 
   ;; Web Application
   http-kit/http-kit   {:mvn/version "2.3.0"}
@@ -15,8 +15,7 @@
   seancorfield/next.jdbc              {:mvn/version "1.1.582"}
   camel-snake-kebab/camel-snake-kebab {:mvn/version "0.4.1"}
   com.h2database/h2                   {:mvn/version "1.4.200"}
-  org.postgresql/postgresql           {:mvn/version "42.2.16"}
-  }
+  org.postgresql/postgresql           {:mvn/version "42.2.16"}}
 
  :aliases
  {
