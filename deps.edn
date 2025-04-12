@@ -36,6 +36,7 @@
    :extra-deps  {lambdaisland/kaocha {:mvn/version "1.0-612"}}
    :main-opts   ["-m" "kaocha.runner"]}
 
+  ;; TODO: replace with tools.build
   :uberjar
   {:extra-deps {seancorfield/depstar {:mvn/version "1.0.94"}}
    :main-opts  ["-m" "hf.depstar.uberjar" "banking-on-clojure.jar"

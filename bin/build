@@ -1,2 +1,5 @@
 #!/usr/bin/env bash
+
+# TODO: replace with tools.build
+
 clojure -A:uberjar
