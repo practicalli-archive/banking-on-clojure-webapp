@@ -1,3 +1,9 @@
+;; ---------------------------------------------------------
+;; Banking On Clojure
+;;
+;; Web Application example of a high street bank
+;; ---------------------------------------------------------
+
 (ns practicalli.banking-on-clojure
   (:gen-class)
   (:require
@@ -5,9 +11,9 @@
    [compojure.core :refer [defroutes GET POST]]
    [practicalli.request-handler :as handler]))
 
-
+;; ---------------------------------------------------------
 ;; Request Routing
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; TODO: change to Reitit / Reitit-ring
 
 (defroutes app
   (GET "/"         [] handler/welcome-page)
@@ -15,15 +21,14 @@
   (GET "/account"  [] handler/account-history)
   (GET "/transfer" [] handler/money-transfer)
   (GET "/payment"  [] handler/money-payment)
-  (GET "/register" [] handler/register-customer) )
+  (GET "/register" [] handler/register-customer))
+;; ---------------------------------------------------------
 
-
+;; ---------------------------------------------------------
 ;; System
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Reference to application server instance for stopping/restarting
 (defonce app-server-instance (atom nil))
-
 
 (defn app-server-start
   "Start the application server and log the time of start."
@@ -34,7 +39,6 @@
   (reset! app-server-instance
           (app-server/run-server #'app {:port http-port})))
 
-
 (defn app-server-stop
   "Gracefully shutdown the server, waiting 100ms.  Log the time of shutdown"
   []
@@ -44,14 +48,14 @@
     (println (str (java.util.Date.)
                   " INFO: Application server shutting down..."))))
 
-
 (defn app-server-restart
   "Convenience function to stop and start the application server"
-
   [http-port]
   (app-server-stop)
   (app-server-start http-port))
 
+;; ---------------------------------------------------------
+;; Entry point
 
 (defn -main
   "Select a value for the http port the app-server will listen to
@@ -64,9 +68,11 @@
   (let [http-port (Integer. (or http-port (System/getenv "PORT") "8888"))]
     (app-server-start http-port)))
 
+;; End of Entry point
+;; ---------------------------------------------------------
 
+;; ---------------------------------------------------------
 ;; REPL driven development helpers
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (comment
 
@@ -90,4 +96,5 @@
   (def system-properties
     (System/getProperties))
 
-  )
+  #())
+;; ---------------------------------------------------------
